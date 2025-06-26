@@ -61,10 +61,8 @@ export default function useAuth() {
     isLoading.value = true
     try {
       const response = await axios.post('/api/resend-verification-email', { email })
-      // Mostriamo sempre il toast di successo generico che arriva dal backend
       toast.success(response.data.message)
     } catch (error) {
-      // In caso di errore di validazione o altro, mostriamo un toast generico
       toast.error('Impossibile completare la richiesta. Riprova più tardi.')
       throw error
     } finally {

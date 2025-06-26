@@ -5,12 +5,10 @@ import useAuth from '../composables/useAuth';
 
 const { publicResendVerificationEmail, isLoading } = useAuth();
 
-// Schema di validazione con VeeValidate e Yup
 const schema = yup.object({
   email: yup.string().required("L'email è obbligatoria").email("Inserisci un'email valida"),
 });
 
-// La funzione di submit che verrà chiamata solo se la validazione frontend passa
 const handleResend = async (values) => {
   await publicResendVerificationEmail(values.email);
 };

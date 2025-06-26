@@ -10,7 +10,6 @@ const status = ref('Verifica in corso... Reindirizzamento al server per la confe
 const hasError = ref(false);
 
 onMounted(() => {
-  // 1. Prendiamo l'URL di verifica del backend dal nostro parametro
   const verifyUrl = route.query.verify_url;
 
   if (!verifyUrl) {
@@ -20,10 +19,6 @@ onMounted(() => {
     return;
   }
   
-  // 2. LA SOLUZIONE: Invece di usare Axios, facciamo un reindirizzamento
-  //    nativo del browser. Questo permette al backend di gestire correttamente
-  //    la richiesta firmata. Sarà poi il backend a reindirizzarci indietro
-  //    alla pagina di login con il messaggio di successo.
   window.location.href = verifyUrl;
 
 });

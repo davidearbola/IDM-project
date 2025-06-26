@@ -10,13 +10,11 @@ const { login, isLoading } = useAuth()
 const toast = useToast()
 const isNotVerified = ref(false)
 
-// Schema di validazione per il login
 const schema = yup.object({
   email: yup.string().required("L'email è obbligatoria").email("Inserisci un'email valida"),
   password: yup.string().required('La password è obbligatoria'),
 })
 
-// handleLogin ora riceve i valori validati (inclusa la checkbox 'remember')
 const handleLogin = async (values) => {
   isNotVerified.value = false
   try {
@@ -28,12 +26,6 @@ const handleLogin = async (values) => {
   }
 }
 
-const handleResendHelp = () => {
-  /* ... non cambia ... */
-}
-onMounted(() => {
-  /* ... non cambia ... */
-})
 </script>
 
 <template>

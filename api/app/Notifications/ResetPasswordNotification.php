@@ -25,7 +25,6 @@ class ResetPasswordNotification extends Notification
 
     public function toMail($notifiable)
     {
-        // Costruiamo l'URL per il nostro frontend Vue
         $url = env('FRONTEND_URL', 'http://localhost:5173') . 
                '/reset-password?token=' . $this->token . 
                '&email=' . urlencode($notifiable->getEmailForPasswordReset());

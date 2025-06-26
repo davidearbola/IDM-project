@@ -25,7 +25,6 @@ class CustomVerifyEmail extends Notification
 
     public function toMail($notifiable)
     {
-        // 1. Generiamo il link firmato del backend come prima
         $backendVerificationUrl = URL::temporarySignedRoute(
             'verification.verify',
             Carbon::now()->addMinutes(60),
@@ -35,9 +34,6 @@ class CustomVerifyEmail extends Notification
             ]
         );
 
-        // 2. LA MODIFICA CHIAVE: Invece di passare l'intero URL, costruiamo un link
-        //    per il frontend che punta alla stessa nostra rotta, ma passando
-        //    l'URL del backend come parametro. Questo è il modo corretto per SPA.
         $frontendUrl = env('FRONTEND_URL', 'http://localhost:5173') . 
                        '/verify-email?verify_url=' . urlencode($backendVerificationUrl);
 

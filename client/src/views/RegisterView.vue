@@ -1,31 +1,24 @@
 <script setup>
-// 1. RIMUOVIAMO 'ref' PER IL FORM E IMPORTIAMO LE NUOVE LIBRERIE
-import { ref } from 'vue'; // ref ci serve ancora per errorMessage
+import { ref } from 'vue'; 
 import { Form, Field, ErrorMessage } from 'vee-validate';
 import * as yup from 'yup';
 import useAuth from '../composables/useAuth';
 
 const { register, isLoading } = useAuth();
-const errorMessage = ref(''); // Lo teniamo per gli errori che arrivano dal backend
+const errorMessage = ref(''); 
 
-// 2. DEFINIAMO LE REGOLE DI VALIDAZIONE CON YUP
-// Questo oggetto descrive come ogni campo deve essere per essere valido.
 const schema = yup.object({
   name: yup.string().required('Il nome è obbligatorio'),
   email: yup.string().required('L\'email è obbligatoria').email('Inserisci un\'email valida'),
   password: yup.string().required('La password è obbligatoria').min(8, 'La password deve contenere almeno 8 caratteri'),
-  // La regola 'oneOf' controlla che questo campo sia uguale a un altro campo (in questo caso, 'password')
   password_confirmation: yup.string()
     .required('La conferma della password è obbligatoria')
     .oneOf([yup.ref('password')], 'Le password non corrispondono'),
 });
 
-// 3. LA NOSTRA FUNZIONE DI SUBMIT ORA RICEVE I VALORI DAL COMPONENTE <Form>
-// Verrà chiamata solo se TUTTE le regole di validazione frontend sono state superate.
 const handleRegister = async (values) => {
   errorMessage.value = '';
   try {
-    // Passiamo direttamente 'values' alla nostra funzione del composable
     await register(values);
   } catch (error) {
     if (error.response && error.response.status === 422) {

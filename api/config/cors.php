@@ -12,7 +12,6 @@ return [
 
     'allowed_methods' => ['*'],
 
-    // QUI LA MODIFICA CHIAVE: specifica l'URL esatto del frontend
     'allowed_origins' => explode(',', env('FRONTEND_URL', 'http://localhost:5173')),
 
     'allowed_origins_patterns' => [],
@@ -23,7 +22,6 @@ return [
 
     'max_age' => 0,
 
-    // QUI LA MODIFICA CHIAVE: deve essere TRUE
     'supports_credentials' => true,
 
 ];

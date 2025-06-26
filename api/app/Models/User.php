@@ -2,7 +2,6 @@
 
 namespace App\Models;
 
-// use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
@@ -51,7 +50,7 @@ class User extends Authenticatable implements MustVerifyEmail
     }
 
     /**
-     * 2. SOVRASCRIVI IL METODO DI DEFAULT
+     * 
      * Invia la notifica di verifica email personalizzata.
      *
      * @return void
